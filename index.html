@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOKA PKS ANGKATAN 16</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2f2f2f, #3b3b3b, #5a5a5a, #8b8b8b);
+      background-size: 300% 300%;
+      color: #e5e5e5;
+      line-height: 1.8;
+      overflow-x: hidden;
+      animation: backgroundShift 25s ease-in-out infinite alternate;
+    }
+
+    /* Animasi latar */
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* NAVBAR */
+    nav {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 200;
+      border-bottom: 2px solid #d4af37;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(40,40,40,0.9);
+    }
+
+    nav .logo {
+      color: #d4af37;
+      font-weight: bold;
+      font-size: 1.3em;
+      text-shadow: 0 0 8px rgba(212,175,55,0.6);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 8px 15px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      background: #d4af37;
+      color: #222;
+    }
+
+    /* MENU MOBILE */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle span {
+      background: #d4af37;
+      height: 3px;
+      width: 25px;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 100px 20px 40px;
+      background: rgba(255,255,255,0.05);
+      border-bottom: 2px solid #d4af37;
+      margin-top: 60px;
+      transition: transform 0.5s ease-out;
+    }
+
+    header .logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    header .logos img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(212,175,55,0.5);
+      transition: transform 0.3s;
+    }
+    header .logos img:hover { transform: scale(1.1); }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #d4af37;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    header p { font-size: 1.2em; color: #e0e0e0; }
+
+    /* SECTION */
+    section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 30px 20px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s ease-out;
+    }
+
+    section.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #d4af37;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    section p, section ul { font-size: 1.1em; color: #f0f0f0; }
+
+    /* GALERI */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+
+    /* FOOTER */
+    footer {
+      background: rgba(20,20,20,0.9);
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 2px solid #d4af37;
+      margin-top: 80px;
+    }
+
+    footer .org-logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    footer .org-logos img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(212,175,55,0.5);
+      transition: 0.3s;
+    }
+    footer .org-logos img:hover { transform: scale(1.1); }
+
+    footer .angkatan-info {
+      color: #d4af37;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    footer p { color: #ccc; font-size: 1em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(30,30,30,0.95);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        padding: 20px 0;
+      }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: flex; }
+      header h1 { font-size: 2em; }
+      header p { font-size: 1em; }
+      section { margin: 40px 15px; padding: 20px; }
+      .gallery img { height: 180px; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.7em; }
+      section h2 { font-size: 1.6em; }
+      body { font-size: 0.95em; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">FOKA PKS ANGKATAN 16</div>
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menuList">
+      <li><a href="#tentang-kami">Tentang Kami</a></li>
+      <li><a href="#jadwal-latihan">Jadwal Latihan</a></li>
+      <li><a href="#foto-bar-seangkatan">Fotbar Seangkatan</a></li>
+      <li><a href="#tentang-angkatan-16">Tentang Angkatan 16</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="logos">
+      <img src="https://1.bp.blogspot.com/-3WO3YWn2YDQ/XYahQEuSe_I/AAAAAAAACrM/2SjMdckbna8MQyk8dlxYCiS-4myDfRovQCLcBGAsYHQ/s640/smk-negeri-1-pasuruan.png" alt="Logo SMKN 1 Pasuruan">
+      <img src="https://yt3.googleusercontent.com/ytc/AIdro_nU-3uwCd88TNfU1L3HOLc_6_-Uhx5xKcZyGcYJpoF1eA=s900-c-k-c0x00ffffff-no-rj" alt="Logo Foka PKS Skensa">
+    </div>
+    <h1>FOKA PKS SKENSA ANGKATAN 16</h1>
+    <p>Forum berbagi pengalaman & inspirasi Paskibra SMKN 1 Pasuruan</p>
+  </header>
+
+  <section id="tentang-kami">
+    <h2><i class="fas fa-info-circle"></i> Tentang Kami</h2>
+    <p>Kami adalah Angkatan 16 Foka PKS Skensa dari SMKN 1 Pasuruan. Forum ini dibuat untuk berbagi pengalaman, tips, dan semangat kebangsaan!</p>
+  </section>
+
+  <section id="jadwal-latihan">
+    <h2><i class="fas fa-calendar-alt"></i> Jadwal Latihan</h2>
+    <ul>
+      <li><strong>Sabtu:</strong> Latihan Wajib pukul 14.20 - 17.00</li>
+    </ul>
+    <p>Tempat: Lapangan SMKN 1 Pasuruan. Jangan lupa topi dan uang kas ya!</p>
+  </section>
+
+  <section id="foto-bar-seangkatan">
+    <h2><i class="fas fa-camera-retro"></i> Foto Diklat</h2>
+    <div class="gallery">
+      <img src="Gambar WhatsApp 2025-11-04 pukul 07.01.11_5bfc8b8c.jpg" alt="Foto 1">
+      <img src="komando.JPG" alt="Foto 2">
+      <img src="siraman.JPG" alt="Foto 3">
+      <img src="eval.JPG" alt="Foto 4">
+    </div>
+  </section>
+
+  <section id="tentang-angkatan-16">
+    <h2><i class="fas fa-star"></i> Tentang Angkatan 16</h2>
+    <p>Angkatan 16 Foka PKS Skensa adalah generasi muda penuh semangat dan dedikasi. Dengan motto <em>"Bersatu, Tangguh, Bermartabat"</em>, kami siap menjaga tradisi Paskibra dan menginspirasi generasi berikutnya!</p>
+  </section>
+
+  <footer>
+    <div class="org-logos">
+      <img src="https://1.bp.blogspot.com/-3WO3YWn2YDQ/XYahQEuSe_I/AAAAAAAACrM/2SjMdckbna8MQyk8dlxYCiS-4myDfRovQCLcBGAsYHQ/s640/smk-negeri-1-pasuruan.png" alt="">
+      <img src="https://yt3.googleusercontent.com/ytc/AIdro_nU-3uwCd88TNfU1L3HOLc_6_-Uhx5xKcZyGcYJpoF1eA=s900-c-k-c0x00ffffff-no-rj" alt="">
+    </div>
+    <div class="angkatan-info">Angkatan 16 Foka PKS Skensa</div>
+    <p>&copy; 2025 Forum Paskibra Indonesia. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menuList');
+    toggle.addEventListener('click', () => menu.classList.toggle('show'));
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const sections = document.querySelectorAll('section');
+    const reveal = () => {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) sec.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    reveal();
+  </script>
+</body>
+</html>
